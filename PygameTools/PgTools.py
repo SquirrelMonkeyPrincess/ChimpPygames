@@ -24,6 +24,9 @@ SCREEN_SIZE = (int(params["screen_width"]), int(params["screen_height"]))  # (le
 BLACK = (0, 0, 0)
 GREEN = (0, 128, 0)
 RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+AQUA = (0, 255, 255)
+YELLOW = (255, 255, 0)
 CURSOR_VISIBLE = True
 if("y" in str(params["cursor_hidden"]) or "Y" in str(params["cursor_hidden"])):
     CURSOR_VISIBLE = False
@@ -91,17 +94,23 @@ def response(screen, accuracy=None, delay=5000):
     :param accuracy: calls pellet() and sound(correct=True) if True, sound(correct=False) if False
     """
     if accuracy:
+        screen.bg.fill(YELLOW)
         sound(correct=True)
+        screen.refresh()
+        pg.time.delay(1000)
+        screen.bg.fill(BLACK)
+        screen.refresh()
         pellet()
-        screen.bg.fill(GREEN)
     elif not accuracy:
-        sound(correct=False)
         screen.bg.fill(RED)
-    screen.refresh()
+        sound(correct=False)
+        screen.refresh()
+        pg.time.delay(1000)
+        screen.bg.fill(BLACK)
+        screen.refresh()
     pg.event.get()
-    pg.time.delay(delay)
+    pg.time.delay(delay-1000)
     pg.event.clear()
-    screen.bg.fill(BLACK)
 
 
 def rand_x_coord(length):
