@@ -10,7 +10,8 @@ import colorsys
 import numpy as np
 
 # Reads globalParameters.dat
-file = open("PygameTools/globalParameters.dat")
+# file = open("PygameTools/globalParameters.dat")
+file = open('/home/pi/Desktop/ChimpPygames/PygameTools/globalParameters.dat')
 params = {}
 for line in file:
     line = line.strip()
