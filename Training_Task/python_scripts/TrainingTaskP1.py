@@ -110,40 +110,40 @@ while running:
             elif (pg.time.get_ticks()-when_they_started_their_touch>min_touch_ms_required) and \
                (pg.time.get_ticks()-when_they_started_their_touch<max_touch_ms):    
 
-            if stimulus.collidepoint(xCoord, yCoord) and screen.fg.get_at((xCoord, yCoord)) != (0,0,0):
-                PgTools.response(screen, True, passDelay)
-                PgTools.write_ln(
-                    filename="Training_Task/resultsP1.csv",
-                    data=[
-                        subjectName,
-                        trialNum,
-                        "\"" + str((stimLength, stimHeight)) + "\"",
-                        "\"" + str((xCoord, yCoord)) + "\"",
-                        "passed",
-                    ],
-                )
-                stimLength -= lengthDecrease
-                stimHeight -= heightDecrease
-            else:
-                PgTools.response(screen, False, failDelay)
-                PgTools.write_ln(
-                    filename="Training_Task/resultsP1.csv",
-                    data=[
-                        subjectName,
-                        trialNum,
-                        "\"" + str((stimLength, stimHeight)) + "\"",
-                        "\"" + str((xCoord, yCoord)) + "\"",
-                        "failed",
-                    ],
-                )
-            trialNum += 1
+                if stimulus.collidepoint(xCoord, yCoord) and screen.fg.get_at((xCoord, yCoord)) != (0,0,0):
+                    PgTools.response(screen, True, passDelay)
+                    PgTools.write_ln(
+                        filename="Training_Task/resultsP1.csv",
+                        data=[
+                            subjectName,
+                            trialNum,
+                            "\"" + str((stimLength, stimHeight)) + "\"",
+                            "\"" + str((xCoord, yCoord)) + "\"",
+                            "passed",
+                        ],
+                    )
+                    stimLength -= lengthDecrease
+                    stimHeight -= heightDecrease
+                else:
+                    PgTools.response(screen, False, failDelay)
+                    PgTools.write_ln(
+                        filename="Training_Task/resultsP1.csv",
+                        data=[
+                            subjectName,
+                            trialNum,
+                            "\"" + str((stimLength, stimHeight)) + "\"",
+                            "\"" + str((xCoord, yCoord)) + "\"",
+                            "failed",
+                        ],
+                    )
+                trialNum += 1
             
-            if trialNum == trialsAmt:
-                PgTools.end_screen(screen)
-                while True:
-                    for event in pg.event.get():
-                        PgTools.quit_pg(event)
-            start_trial(stimLength, stimHeight)
+                if trialNum == trialsAmt:
+                    PgTools.end_screen(screen)
+                    while True:
+                        for event in pg.event.get():
+                            PgTools.quit_pg(event)
+                start_trial(stimLength, stimHeight)
     pg.display.update()
     pg.time.delay(100)
     
