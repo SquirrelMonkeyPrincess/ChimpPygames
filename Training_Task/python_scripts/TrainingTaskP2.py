@@ -97,25 +97,25 @@ while running:
             elif (pg.time.get_ticks()-when_they_started_their_touch>min_touch_ms_required) and \
                (pg.time.get_ticks()-when_they_started_their_touch<max_touch_ms): 
                 
-            if stimulus.collidepoint(xCoord, yCoord):# and screen.fg.get_at((xCoord, yCoord)) != (0,0,0):
-                PgTools.response(screen, True, passDelay)
-                PgTools.write_ln(
-                    filename="Training_Task/resultsP2.csv",
-                    data=[subjectName, trialNum, ("\"" + str(xCoord) + ", " + str(yCoord) + "\""), "passed",],
-                )
-                passedTrials += 1
-            else:
-                PgTools.response(screen, False, failDelay)
-                PgTools.write_ln(
-                    filename="Training_Task/resultsP2.csv",
-                    data=[subjectName, trialNum, ("\"" + str(xCoord) + ", " + str(yCoord) + "\""), "failed",],
-                )
-            trialNum += 1
-            
-            if passedTrials == trialsAmt:
-                PgTools.end_screen(screen)
-                while True:
-                    for event in pg.event.get():
-                        PgTools.quit_pg(event)
-            start_trial(stimLength, stimHeight)
+                if stimulus.collidepoint(xCoord, yCoord):# and screen.fg.get_at((xCoord, yCoord)) != (0,0,0):
+                    PgTools.response(screen, True, passDelay)
+                    PgTools.write_ln(
+                        filename="Training_Task/resultsP2.csv",
+                        data=[subjectName, trialNum, ("\"" + str(xCoord) + ", " + str(yCoord) + "\""), "passed",],
+                    )
+                    passedTrials += 1
+                else:
+                    PgTools.response(screen, False, failDelay)
+                    PgTools.write_ln(
+                        filename="Training_Task/resultsP2.csv",
+                        data=[subjectName, trialNum, ("\"" + str(xCoord) + ", " + str(yCoord) + "\""), "failed",],
+                    )
+                trialNum += 1
+
+                if passedTrials == trialsAmt:
+                    PgTools.end_screen(screen)
+                    while True:
+                        for event in pg.event.get():
+                            PgTools.quit_pg(event)
+                start_trial(stimLength, stimHeight)
     pg.display.update()
